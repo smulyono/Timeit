@@ -1,0 +1,67 @@
+{
+    "name": "timeit",
+    "displayName": "timeIt",
+    "description": "timer",
+    "version": "0.0.1",
+    "publisher": "smulyono",
+    "engines": {
+        "vscode": "^1.20.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.timeitStart",
+        "onCommand:extension.timeitStop",
+        "onCommand:extension.timeitPause",
+        "onCommand:extension.timeitResume"
+    ],
+    "main": "./src/index",
+    "contributes": {
+        "configuration": {
+            "title": "TimeIt configuration",
+            "properties": {
+                "timeit.duration" : {
+                    "type" : "number",
+                    "default" : 30,
+                    "description": "Time duration (in minutes)"
+                }
+            }
+        },
+        "commands": [
+            {
+                "command": "extension.timeitStart",
+                "title": "TimeIt : Start"
+            },
+            {
+                "command": "extension.timeitStop",
+                "title": "TimeIt : Stop / Finish task execution"
+            },
+            {
+                "command": "extension.timeitPause",
+                "title": "TimeIt : Pause task execution"
+            },
+            {
+                "command": "extension.timeitResume",
+                "title": "TimeIt : Resume"
+            }            
+        ]
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^7.0.43",
+        "eslint": "^4.11.0",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6"
+    },
+    "dependencies": {
+        "babel-polyfill": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-stage-0": "^6.24.1",
+        "babel-register": "^6.26.0"
+    }
+}
