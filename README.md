@@ -1,21 +1,27 @@
-# timeit README
+# Timeit README
 
-This is the README for your extension "timeit". After writing up a brief description, we recommend including the following sections.
+Simple task timer which allows setup a timer while doing specific task.
+
 
 ## Features
 
-
-## Requirements
-
-
-## Extension Settings
-
-
-## Known Issues
+* `Start new Task`
+* `Stop / Pause Timer`
+* `Task completion with completion time`, show how long does task took.
+* `Timer configuration` 
+    
+    * __timeit.duration__, timer duration for individual task
 
 
 ## Release Notes
 
+### 1.0.0  - 2/25/2018
+
+* First release with standard feature for start/stop/pause timer.
+
+## Acknowledgement
+
+<div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
 -----------------------------------------------------------------------------------------------------------
 

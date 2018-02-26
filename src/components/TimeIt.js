@@ -50,6 +50,7 @@ class TimeIt {
         this.controlDisplayAlt = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 2);
         this.controlDisplay = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 1);
         this.controlDisplay.show();
+        this.displayStatus();
     }
 
     async start() {
