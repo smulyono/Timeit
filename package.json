@@ -4,6 +4,11 @@
     "description": "timer",
     "version": "1.0.0",
     "publisher": "smulyono",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/smulyono/Timeit"
+    },
+    "license": "MIT",
     "engines": {
         "vscode": "^1.20.0"
     },
