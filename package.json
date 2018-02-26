@@ -2,7 +2,7 @@
     "name": "timeit",
     "displayName": "timeIt",
     "description": "timer",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publisher": "smulyono",
     "repository": {
         "type": "git",

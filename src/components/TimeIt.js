@@ -88,7 +88,7 @@ class TimeIt {
             case STATUS.STOP : 
                 this.controlDisplayAlt.hide();        
                 this.controlDisplay.text = `$(triangle-right) Timeit Task`;
-                this.controlDisplayAlt.tooltip = "Creating new task and timer";
+                this.controlDisplay.tooltip = "Creating new task and timer";
                 this.controlDisplay.command = "extension.timeitStart";
             break;
             case STATUS.PAUSE :
