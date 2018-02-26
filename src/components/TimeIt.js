@@ -99,12 +99,12 @@ class TimeIt {
             break;
             case STATUS.RESUME:
             default : 
-                // show the pause button
+                // Finish task
                 this.controlDisplayAlt.text = `$(thumbsup)`;
                 this.controlDisplayAlt.command = "extension.timeitStop";
                 this.controlDisplayAlt.tooltip = "Finish task execution";
                 this.controlDisplayAlt.show();
-                // running mode
+                // show the pause button
                 this.controlDisplay.text = `$(watch) ${this.timeDisplay}`;
                 this.controlDisplay.command = "extension.timeitPause";
                 this.controlDisplay.tooltip = "Pause execution";
