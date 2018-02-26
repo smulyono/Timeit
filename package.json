@@ -19,9 +19,9 @@
         "configuration": {
             "title": "TimeIt configuration",
             "properties": {
-                "timeit.duration" : {
-                    "type" : "number",
-                    "default" : 30,
+                "timeit.duration": {
+                    "type": "number",
+                    "default": 30,
                     "description": "Time duration (in minutes)"
                 }
             }
@@ -42,7 +42,7 @@
             {
                 "command": "extension.timeitResume",
                 "title": "TimeIt : Resume"
-            }            
+            }
         ]
     },
     "scripts": {
