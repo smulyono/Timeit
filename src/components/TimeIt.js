@@ -8,6 +8,7 @@ const STATUS = {
 };
 
 const DEFAULT_DURATION = 30;
+const DEFAULT_EXTRA_TIME = 10;
 const MINUTES_TO_MS = (60 * 1000);
 const HOUR_TO_MS    = 60 * MINUTES_TO_MS;
 
@@ -22,9 +23,9 @@ class TimeIt {
         const secondsLO = minutesLO % MINUTES_TO_MS;
         let seconds = Math.floor(secondsLO / 1000);
 
-        return `${hour > 10 ? hour : '0' + hour}:` + 
-               `${minutes >10 ? minutes : '0' + minutes}:` + 
-               `${seconds >10 ? seconds : '0' + seconds}s`;
+        return `${hour >= 10 ? hour : '0' + hour}:` + 
+               `${minutes >= 10 ? minutes : '0' + minutes}:` + 
+               `${seconds >= 10 ? seconds : '0' + seconds}s`;
     }
 
     loadConfiguration() {
@@ -34,6 +35,7 @@ class TimeIt {
 
         // counter for showing timer
         this.count = (this.configuration.duration || DEFAULT_DURATION) * (MINUTES_TO_MS);
+        this.timeAddition = (this.configuration.extratime || DEFAULT_EXTRA_TIME) * (MINUTES_TO_MS);
         // task duration 
         this.taskDuration = this.count;
     }
@@ -47,8 +49,9 @@ class TimeIt {
         this.status = STATUS.STOP;
         this.taskName = "-";
 
+        this.controlDisplayMore = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 1);
         this.controlDisplayAlt = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 2);
-        this.controlDisplay = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 1);
+        this.controlDisplay = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 3);
         this.controlDisplay.show();
         this.displayStatus();
     }
@@ -58,11 +61,13 @@ class TimeIt {
         this.taskName = await vscode.window.showInputBox({
             placeHolder : "Specify task name"
         });
-        this.status = STATUS.RUNNING;
-        this.startTime = new Date();
-
-        this.loadConfiguration();
-        this.countdown();
+        if (this.taskName) {
+            this.status = STATUS.RUNNING;
+            this.startTime = new Date();
+    
+            this.loadConfiguration();
+            this.countdown();    
+        }
     }
 
     get timeDisplay() {
@@ -82,16 +87,22 @@ class TimeIt {
         return this.formatTimeDisplay(diff);
     }
 
+    get timeAdditionDisplay() {
+        return this.formatTimeDisplay(this.timeAddition);
+    }
+
     displayStatus() {
         // control playback 
         switch (this.status) {
             case STATUS.STOP : 
+                this.controlDisplayMore.hide();        
                 this.controlDisplayAlt.hide();        
-                this.controlDisplay.text = `$(triangle-right) Timeit Task`;
+                this.controlDisplay.text = `$(triangle-right) Add Task`;
                 this.controlDisplay.tooltip = "Creating new task and timer";
                 this.controlDisplay.command = "extension.timeitStart";
             break;
             case STATUS.PAUSE :
+                this.controlDisplayMore.hide();        
                 this.controlDisplayAlt.hide();        
                 this.controlDisplay.text = `$(triangle-right) $(watch) ${this.timeDisplay} (Paused)`;
                 this.controlDisplay.tooltip = "Task is paused";
@@ -99,13 +110,18 @@ class TimeIt {
             break;
             case STATUS.RESUME:
             default : 
+                // Add more time into task
+                this.controlDisplayMore.text = `$(diff-added) ${this.timeAdditionDisplay}`;
+                this.controlDisplayMore.command = "extension.timeitExtra";
+                this.controlDisplayMore.tooltip = "Add more time";
+                this.controlDisplayMore.show();
                 // Finish task
                 this.controlDisplayAlt.text = `$(thumbsup)`;
                 this.controlDisplayAlt.command = "extension.timeitStop";
                 this.controlDisplayAlt.tooltip = "Finish task execution";
                 this.controlDisplayAlt.show();
                 // show the pause button
-                this.controlDisplay.text = `$(watch) ${this.timeDisplay}`;
+                this.controlDisplay.text = `$(watch) ${this.timeDisplay} (${this.taskName})`;
                 this.controlDisplay.command = "extension.timeitPause";
                 this.controlDisplay.tooltip = "Pause execution";
             break;
@@ -147,6 +163,13 @@ class TimeIt {
             this.status = STATUS.RUNNING;
             this.countdown();
         }
+    }
+
+    addTime() {
+        // add the duration (for countdown)
+        this.count += this.timeAddition;
+        // add the initial time duration (for completion)
+        this.taskDuration += this.timeAddition;
     }
 }
 

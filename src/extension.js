@@ -23,11 +23,15 @@ function activate(context) {
     let resume = vscode.commands.registerCommand('extension.timeitResume', () => {
         timeIt.resume()
     });
+    let timeAdd = vscode.commands.registerCommand('extension.timeitExtra', () => {
+        timeIt.addTime()
+    });
 
     context.subscriptions.push(start);
     context.subscriptions.push(stop);
     context.subscriptions.push(pause);
     context.subscriptions.push(resume);
+    context.subscriptions.push(timeAdd);
 }
 
 exports.activate = activate;

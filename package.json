@@ -28,13 +28,18 @@
                     "type": "number",
                     "default": 30,
                     "description": "Time duration (in minutes)"
+                },
+                "timeit.extratime" : {
+                    "type" : "number",
+                    "default" : 10,
+                    "description" : "Time addition (in minutes)"
                 }
             }
         },
         "commands": [
             {
                 "command": "extension.timeitStart",
-                "title": "TimeIt : Start"
+                "title": "TimeIt : Create new task"
             },
             {
                 "command": "extension.timeitStop",
@@ -47,6 +52,10 @@
             {
                 "command": "extension.timeitResume",
                 "title": "TimeIt : Resume"
+            },
+            {
+                "command": "extension.timeitExtra",
+                "title": "TimeIt : Add extra time"
             }
         ]
     },

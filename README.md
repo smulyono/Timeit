@@ -1,17 +1,24 @@
 # Timeit README
 
-Simple task timer which allows setup a timer while doing specific task.
+Simple and easy to use task timer for small task / work inside VScode. 
+
+![Demo](demo.gif)
 
 
 ## Features
 
-* `Start new Task`
+* `Create new Task`
 * `Stop / Pause Timer`
-* `Task completion with completion time`, show how long does task took.
-* `Timer configuration` 
-    
-    * __timeit.duration__, timer duration for individual task
+* `Add more time`
+* `Show completion time when task is done`
+* `Add more time`
 
+
+## Configuration
+
+* __timeit.duration__, timer duration on individual task
+
+* __timeit.extratime__, added extra time while task is in progress. 
 
 ## Acknowledgement
 
