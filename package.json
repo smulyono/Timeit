@@ -39,7 +39,11 @@
         "commands": [
             {
                 "command": "extension.timeitStart",
-                "title": "TimeIt : Create new task"
+                "title": "TimeIt : Create new task",
+                "icon" : {
+                    "dark": "./hourglass.png",
+                    "light": "./hourglass.png"
+                }
             },
             {
                 "command": "extension.timeitStop",
